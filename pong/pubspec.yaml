@@ -21,3 +21,7 @@ dev_dependencies:
   copy_with_extension_gen: ^4.0.4
 
 flutter:
+  fonts:
+    - family: Pixeled
+      fonts:
+        - asset: lib/assets/fonts/Pixeled.ttf

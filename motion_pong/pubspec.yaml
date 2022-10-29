@@ -22,3 +22,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Pixeled
+      fonts:
+        - asset: packages/pong/assets/fonts/Pixeled.ttf
