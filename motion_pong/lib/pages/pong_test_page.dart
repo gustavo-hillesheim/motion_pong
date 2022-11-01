@@ -2,8 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pong/pong.dart';
 
-class PongTestPage extends StatelessWidget {
+class PongTestPage extends StatefulWidget {
   const PongTestPage({super.key});
+
+  @override
+  State<PongTestPage> createState() => _PongTestPageState();
+}
+
+class _PongTestPageState extends State<PongTestPage> {
+  final playerController = PongPlayerController();
+
+  @override
+  void dispose() {
+    playerController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +32,14 @@ class PongTestPage extends StatelessWidget {
         child: Actions(
           actions: {
             MoveIntent: CallbackAction<MoveIntent>(
-              onInvoke: (intent) => debugPrint('moving ${intent.direction}'),
+              onInvoke: (intent) => playerController.move(intent.direction),
             ),
           },
-          child: const Focus(
+          child: Focus(
             autofocus: true,
-            child: Pong(),
+            child: Pong(
+              playerController: playerController,
+            ),
           ),
         ),
       ),
