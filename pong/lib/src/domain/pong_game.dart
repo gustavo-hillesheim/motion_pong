@@ -25,8 +25,10 @@ class PongGame {
 
   PongGameState _createInitialState() {
     final random = Random();
-    final xBallDirection = random.nextBool() ? -1.0 : 1.0;
-    final yBallDirection = random.nextBool() ? -1.0 : 1.0;
+    final xBallDirection =
+        (random.nextBool() ? -1.0 : 1.0) * random.nextDouble().clamp(0.4, 0.6);
+    final yBallDirection =
+        (random.nextBool() ? -1.0 : 1.0) * random.nextDouble().clamp(0.4, 0.6);
     final ballDirection = Alignment(xBallDirection, yBallDirection);
     return PongGameState(
       ball: PongBall(direction: ballDirection),
@@ -70,7 +72,39 @@ class PongGame {
   }
 
   void _tick(Duration elapsedTime) {
-    _setState(_state);
+    final ballPosition = _newBallPosition(elapsedTime);
+    _setState(
+      _state.copyWith(
+        ball: _state.ball.copyWith(
+          position: ballPosition,
+          direction: _newBallDirection(ballPosition),
+        ),
+      ),
+    );
+  }
+
+  Offset _newBallPosition(Duration elapsedTime) {
+    const ballSpeedPerSecond = 0.8;
+    final millisecondsPerSecond = const Duration(seconds: 1).inMilliseconds;
+    final ballTravelledDistance =
+        ballSpeedPerSecond * elapsedTime.inMilliseconds / millisecondsPerSecond;
+    final ball = _state.ball;
+    final ballXTranslate = ball.direction.x * ballTravelledDistance;
+    final ballYTranslate = ball.direction.y * ballTravelledDistance;
+    final ballX = (_state.ball.position.dx + ballXTranslate).clamp(-1, 1);
+    final ballY = (_state.ball.position.dy + ballYTranslate).clamp(-1, 1);
+    return Offset(ballX.toDouble(), ballY.toDouble());
+  }
+
+  Alignment _newBallDirection(Offset ballPosition) {
+    final currentDirection = _state.ball.direction;
+    final newXDirection = ballPosition.dx.abs() == 1
+        ? currentDirection.x * -1
+        : currentDirection.x;
+    final newYDirection = ballPosition.dy.abs() == 1
+        ? currentDirection.y * -1
+        : currentDirection.y;
+    return Alignment(newXDirection, newYDirection);
   }
 
   void _setState(PongGameState gameState) {

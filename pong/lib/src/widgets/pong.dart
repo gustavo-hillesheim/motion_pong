@@ -77,12 +77,18 @@ class _PongState extends State<Pong> {
                   ],
                 ),
               ),
-              Align(
-                alignment: Alignment(
-                  gameState.ball.position.dx,
-                  gameState.ball.position.dy,
+              Positioned.fill(
+                top: 4,
+                left: 4,
+                bottom: 4,
+                right: 4,
+                child: Align(
+                  alignment: Alignment(
+                    gameState.ball.position.dx,
+                    gameState.ball.position.dy,
+                  ),
+                  child: const Ball(),
                 ),
-                child: const Ball(),
               ),
             ],
           ),
