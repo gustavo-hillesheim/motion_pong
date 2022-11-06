@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pong/src/models/pong_player.dart';
+import 'package:pong/src/domain/models/pong_player.dart';
 
 class PlayerArea extends StatelessWidget {
   final PongPlayer player;
