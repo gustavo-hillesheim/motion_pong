@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pong/pong.dart';
 import 'package:pong/src/domain/models/pong_game_state.dart';
 import 'package:pong/src/domain/pong_game.dart';
+import 'package:pong/src/widgets/ball.dart';
 import 'package:pong/src/widgets/player_area.dart';
 import 'package:pong/src/widgets/pong_field.dart';
 
@@ -75,6 +76,13 @@ class _PongState extends State<Pong> {
                     ),
                   ],
                 ),
+              ),
+              Align(
+                alignment: Alignment(
+                  gameState.ball.position.dx,
+                  gameState.ball.position.dy,
+                ),
+                child: const Ball(),
               ),
             ],
           ),

@@ -7,6 +7,8 @@ part of 'pong_game_state.dart';
 // **************************************************************************
 
 abstract class _$PongGameStateCWProxy {
+  PongGameState ball(PongBall ball);
+
   PongGameState playerOne(PongPlayer playerOne);
 
   PongGameState playerTwo(PongPlayer playerTwo);
@@ -18,6 +20,7 @@ abstract class _$PongGameStateCWProxy {
   /// PongGameState(...).copyWith(id: 12, name: "My name")
   /// ````
   PongGameState call({
+    PongBall? ball,
     PongPlayer? playerOne,
     PongPlayer? playerTwo,
   });
@@ -28,6 +31,9 @@ class _$PongGameStateCWProxyImpl implements _$PongGameStateCWProxy {
   final PongGameState _value;
 
   const _$PongGameStateCWProxyImpl(this._value);
+
+  @override
+  PongGameState ball(PongBall ball) => this(ball: ball);
 
   @override
   PongGameState playerOne(PongPlayer playerOne) => this(playerOne: playerOne);
@@ -44,10 +50,15 @@ class _$PongGameStateCWProxyImpl implements _$PongGameStateCWProxy {
   /// PongGameState(...).copyWith(id: 12, name: "My name")
   /// ````
   PongGameState call({
+    Object? ball = const $CopyWithPlaceholder(),
     Object? playerOne = const $CopyWithPlaceholder(),
     Object? playerTwo = const $CopyWithPlaceholder(),
   }) {
     return PongGameState(
+      ball: ball == const $CopyWithPlaceholder() || ball == null
+          ? _value.ball
+          // ignore: cast_nullable_to_non_nullable
+          : ball as PongBall,
       playerOne: playerOne == const $CopyWithPlaceholder() || playerOne == null
           ? _value.playerOne
           // ignore: cast_nullable_to_non_nullable

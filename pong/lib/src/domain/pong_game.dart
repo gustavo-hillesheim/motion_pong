@@ -1,24 +1,37 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
+import 'package:pong/src/domain/models/pong_ball.dart';
 import 'package:pong/src/domain/models/pong_game_state.dart';
 import 'package:pong/src/domain/models/pong_player.dart';
 import 'package:pong/src/domain/pong_game_controller.dart';
 
 class PongGame {
   final _streamController = StreamController<PongGameState>.broadcast();
-  PongGameState _state = const PongGameState();
+  late PongGameState _state;
   bool _isRunning = false;
   DateTime? _lastTick;
 
   PongGame({
     PongPlayerController? controller,
   }) {
+    _state = _createInitialState();
     _streamController.add(_state);
     controller?.events.listen(_onPlayerControllerEvent);
   }
 
   Stream<PongGameState> get states => _streamController.stream;
+
+  PongGameState _createInitialState() {
+    final random = Random();
+    final xBallDirection = random.nextBool() ? -1.0 : 1.0;
+    final yBallDirection = random.nextBool() ? -1.0 : 1.0;
+    final ballDirection = Alignment(xBallDirection, yBallDirection);
+    return PongGameState(
+      ball: PongBall(direction: ballDirection),
+    );
+  }
 
   void _onPlayerControllerEvent(PongPlayerControllerEvents event) {
     if (event is MovePlayerUpEvent) {
