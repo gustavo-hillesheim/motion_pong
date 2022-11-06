@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/painting.dart';
 import 'package:pong/src/domain/models/pong_ball.dart';
 import 'package:pong/src/domain/models/pong_game_state.dart';
 import 'package:pong/src/domain/models/pong_player.dart';

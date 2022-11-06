@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FieldDivider extends StatelessWidget {
   const FieldDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const dashSize = 8.0;
+    final dashSize = 0.01.sh;
     return SizedBox(
       width: dashSize,
       child: LayoutBuilder(
@@ -24,7 +25,7 @@ class FieldDivider extends StatelessWidget {
                 color: Colors.white,
               );
             },
-            separatorBuilder: (_, __) => const SizedBox(height: dashSize),
+            separatorBuilder: (_, __) => SizedBox(height: dashSize),
           );
         },
       ),

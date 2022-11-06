@@ -11,6 +11,8 @@ abstract class _$PongPlayerCWProxy {
 
   PongPlayer score(int score);
 
+  PongPlayer size(Size size);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PongPlayer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -20,6 +22,7 @@ abstract class _$PongPlayerCWProxy {
   PongPlayer call({
     double? position,
     int? score,
+    Size? size,
   });
 }
 
@@ -36,6 +39,9 @@ class _$PongPlayerCWProxyImpl implements _$PongPlayerCWProxy {
   PongPlayer score(int score) => this(score: score);
 
   @override
+  PongPlayer size(Size size) => this(size: size);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PongPlayer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -46,6 +52,7 @@ class _$PongPlayerCWProxyImpl implements _$PongPlayerCWProxy {
   PongPlayer call({
     Object? position = const $CopyWithPlaceholder(),
     Object? score = const $CopyWithPlaceholder(),
+    Object? size = const $CopyWithPlaceholder(),
   }) {
     return PongPlayer(
       position: position == const $CopyWithPlaceholder() || position == null
@@ -56,6 +63,10 @@ class _$PongPlayerCWProxyImpl implements _$PongPlayerCWProxy {
           ? _value.score
           // ignore: cast_nullable_to_non_nullable
           : score as int,
+      size: size == const $CopyWithPlaceholder() || size == null
+          ? _value.size
+          // ignore: cast_nullable_to_non_nullable
+          : size as Size,
     );
   }
 }

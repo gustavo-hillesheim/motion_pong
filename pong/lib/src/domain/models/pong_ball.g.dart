@@ -11,6 +11,8 @@ abstract class _$PongBallCWProxy {
 
   PongBall position(Offset position);
 
+  PongBall size(Size size);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PongBall(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -20,6 +22,7 @@ abstract class _$PongBallCWProxy {
   PongBall call({
     Alignment? direction,
     Offset? position,
+    Size? size,
   });
 }
 
@@ -36,6 +39,9 @@ class _$PongBallCWProxyImpl implements _$PongBallCWProxy {
   PongBall position(Offset position) => this(position: position);
 
   @override
+  PongBall size(Size size) => this(size: size);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PongBall(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -46,6 +52,7 @@ class _$PongBallCWProxyImpl implements _$PongBallCWProxy {
   PongBall call({
     Object? direction = const $CopyWithPlaceholder(),
     Object? position = const $CopyWithPlaceholder(),
+    Object? size = const $CopyWithPlaceholder(),
   }) {
     return PongBall(
       direction: direction == const $CopyWithPlaceholder() || direction == null
@@ -56,6 +63,10 @@ class _$PongBallCWProxyImpl implements _$PongBallCWProxy {
           ? _value.position
           // ignore: cast_nullable_to_non_nullable
           : position as Offset,
+      size: size == const $CopyWithPlaceholder() || size == null
+          ? _value.size
+          // ignore: cast_nullable_to_non_nullable
+          : size as Size,
     );
   }
 }

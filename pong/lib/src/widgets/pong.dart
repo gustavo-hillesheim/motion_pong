@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pong/pong.dart';
 import 'package:pong/src/domain/models/pong_game_state.dart';
 import 'package:pong/src/domain/pong_game.dart';
@@ -37,63 +38,65 @@ class _PongState extends State<Pong> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<PongGameState>(
-      stream: gameManager.states,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          if (snapshot.hasError) {
-            return Center(child: Text('${snapshot.error}'));
-          } else {
-            return const Center(child: CircularProgressIndicator());
+    return ScreenUtilInit(
+      builder: (_, __) => StreamBuilder<PongGameState>(
+        stream: gameManager.states,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            if (snapshot.hasError) {
+              return Center(child: Text('${snapshot.error}'));
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
           }
-        }
-        final gameState = snapshot.data!;
-        return Container(
-          color: Colors.black,
-          padding: const EdgeInsets.all(32),
-          child: Stack(
-            children: [
-              const PongField(),
-              Positioned(
-                top: 8,
-                left: 8,
-                bottom: 8,
-                right: 8,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: PlayerArea(
-                        player: gameState.playerOne,
-                        side: PlayerSide.left,
+          final gameState = snapshot.data!;
+          return Container(
+            color: Colors.black,
+            padding: EdgeInsets.all(0.02.sh),
+            child: Stack(
+              children: [
+                const PongField(),
+                Positioned(
+                  top: 0.01.sh,
+                  left: 0.01.sh,
+                  bottom: 0.01.sh,
+                  right: 0.01.sh,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: PlayerArea(
+                          player: gameState.playerOne,
+                          side: PlayerSide.left,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: PlayerArea(
-                        player: gameState.playerTwo,
-                        side: PlayerSide.right,
+                      SizedBox(width: 0.01.sh),
+                      Expanded(
+                        child: PlayerArea(
+                          player: gameState.playerTwo,
+                          side: PlayerSide.right,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned.fill(
-                top: 4,
-                left: 4,
-                bottom: 4,
-                right: 4,
-                child: Align(
-                  alignment: Alignment(
-                    gameState.ball.position.dx,
-                    gameState.ball.position.dy,
+                    ],
                   ),
-                  child: const Ball(),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+                Positioned.fill(
+                  top: 0.01.sh,
+                  left: 0.01.sh,
+                  bottom: 0.01.sh,
+                  right: 0.01.sh,
+                  child: Align(
+                    alignment: Alignment(
+                      gameState.ball.position.dx,
+                      gameState.ball.position.dy,
+                    ),
+                    child: Ball(ball: gameState.ball),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

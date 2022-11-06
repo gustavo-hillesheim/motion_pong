@@ -8,8 +8,10 @@ part 'pong_ball.g.dart';
 class PongBall extends Equatable {
   final Offset position;
   final Alignment direction;
+  final Size size;
 
   const PongBall({
+    this.size = const Size(0.025, 0.025),
     this.position = Offset.zero,
     required this.direction,
   });
