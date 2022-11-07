@@ -7,7 +7,7 @@ part of 'pong_player.dart';
 // **************************************************************************
 
 abstract class _$PongPlayerCWProxy {
-  PongPlayer position(double position);
+  PongPlayer position(Offset position);
 
   PongPlayer score(int score);
 
@@ -20,7 +20,7 @@ abstract class _$PongPlayerCWProxy {
   /// PongPlayer(...).copyWith(id: 12, name: "My name")
   /// ````
   PongPlayer call({
-    double? position,
+    Offset? position,
     int? score,
     Size? size,
   });
@@ -33,7 +33,7 @@ class _$PongPlayerCWProxyImpl implements _$PongPlayerCWProxy {
   const _$PongPlayerCWProxyImpl(this._value);
 
   @override
-  PongPlayer position(double position) => this(position: position);
+  PongPlayer position(Offset position) => this(position: position);
 
   @override
   PongPlayer score(int score) => this(score: score);
@@ -58,7 +58,7 @@ class _$PongPlayerCWProxyImpl implements _$PongPlayerCWProxy {
       position: position == const $CopyWithPlaceholder() || position == null
           ? _value.position
           // ignore: cast_nullable_to_non_nullable
-          : position as double,
+          : position as Offset,
       score: score == const $CopyWithPlaceholder() || score == null
           ? _value.score
           // ignore: cast_nullable_to_non_nullable

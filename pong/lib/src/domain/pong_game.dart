@@ -39,13 +39,19 @@ class PongGame {
     if (event is MovePlayerUpEvent) {
       _setState(_state.copyWith(
         playerOne: _state.playerOne.copyWith(
-          position: max(_state.playerOne.position - 0.02, -1),
+          position: Offset(
+            _state.playerOne.position.dx,
+            max(_state.playerOne.position.dy - 0.02, 0),
+          ),
         ),
       ));
     } else if (event is MovePlayerDownEvent) {
       _setState(_state.copyWith(
         playerOne: _state.playerOne.copyWith(
-          position: min(_state.playerOne.position + 0.02, 1),
+          position: Offset(
+            _state.playerOne.position.dx,
+            min(_state.playerOne.position.dy + 0.02, 1),
+          ),
         ),
       ));
     }

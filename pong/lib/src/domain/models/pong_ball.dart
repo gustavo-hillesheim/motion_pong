@@ -12,8 +12,8 @@ class PongBall extends Equatable {
 
   const PongBall({
     this.size = const Size(0.025, 0.025),
-    this.position = Offset.zero,
-    required this.direction,
+    this.position = const Offset(0.5, 0.5),
+    this.direction = Alignment.center,
   });
 
   @override

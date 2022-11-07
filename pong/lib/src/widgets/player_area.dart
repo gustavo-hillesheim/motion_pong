@@ -30,19 +30,15 @@ class PlayerArea extends StatelessWidget {
             ),
           ),
         ),
-        Positioned.fill(
-          left: side.isLeft ? 0.01.sh : 0,
-          right: side.isRight ? 0.01.sh : 0,
-          child: Align(
-            alignment: FractionalOffset(
-              side.isLeft ? 0 : 1,
-              (0.5 + player.position).clamp(0, 1),
-            ),
-            child: Container(
-              height: player.size.height.sh,
-              width: player.size.width.sh,
-              color: Colors.white,
-            ),
+        Align(
+          alignment: FractionalOffset(
+            player.position.dx,
+            player.position.dy,
+          ),
+          child: Container(
+            height: player.size.height.sh,
+            width: player.size.width.sh,
+            color: Colors.white,
           ),
         ),
       ],
